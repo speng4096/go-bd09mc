@@ -26,7 +26,7 @@ func main() {
 	fmt.Println(lng, lat, err)
 	// output: 1.212877343e+07 4.04024901e+06 <nil>
 
-	lng, lat, err = bd09mc.LL2MC(12128773.43, 4040249.00)
+	lng, lat, err = bd09mc.MC2LL(12128773.43, 4040249.00)
 	fmt.Println(lng, lat, err)
 	// output: 108.95344 34.265657 <nil>
 }
