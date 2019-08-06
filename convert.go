@@ -6,9 +6,11 @@ import (
 	"github.com/pkg/errors"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 var vm *goja.Runtime
+var lock sync.Mutex
 
 func getVM() (*goja.Runtime, error) {
 	if vm != nil {
@@ -46,7 +48,9 @@ func LL2MC(lng, lat float64) (float64, float64, error) {
 		return 0, 0, err
 	}
 	s := fmt.Sprintf("map.convertLL2MC({lng: %f, lat: %f})", lng, lat)
+	lock.Lock()
 	value, err := vm.RunString(s)
+	lock.Unlock()
 	if err != nil {
 		return 0, 0, errors.Wrapf(err, "转换失败")
 	}
@@ -60,7 +64,9 @@ func MC2LL(lng, lat float64) (float64, float64, error) {
 		return 0, 0, err
 	}
 	s := fmt.Sprintf("map.convertMC2LL({lng: %f, lat: %f})", lng, lat)
+	lock.Lock()
 	value, err := vm.RunString(s)
+	lock.Unlock()
 	if err != nil {
 		return 0, 0, errors.Wrapf(err, "转换失败")
 	}
