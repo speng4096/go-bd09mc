@@ -2,13 +2,13 @@
 
 百度经纬度坐标（bd09ll）与百度墨卡托米制坐标（bd09mc）互转
 
-# 安装
+## 安装
 
 ```bash
 go get -u github.com/spencer404/go-bd09mc
 ```
 
-# 使用
+## 使用
 
 ```go
 package main
@@ -30,4 +30,15 @@ func main() {
 	fmt.Println(lng, lat, err)
 	// output: 108.95344 34.265657 <nil>
 }
+```
+
+## 性能
+```
+goos: darwin
+goarch: amd64
+pkg: github.com/spencer404/go-bd09mc
+BenchmarkLL2MC-4           50000             29901 ns/op
+BenchmarkMC2LL-4           50000             29776 ns/op
+PASS
+ok      github.com/spencer404/go-bd09mc 3.601s
 ```
